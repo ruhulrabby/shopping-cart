@@ -56,20 +56,20 @@
                 </div>
                 <div class="col-md-5 center-item">
                   <div class="input-group number-spinner">
-                    <button id="minusCaseBtn" class="btn btn-default">
+                    <button id="case-decrease" class="btn btn-default">
                       <i class="fas fa-minus"></i>
                     </button>
                     <input
-                      id="totalCase"
+                      id="case-count"
                       type="text"
                       class="form-control text-center"
                       value="1"
                     />
-                    <button id="plusCaseBtn" class="btn btn-default">
+                    <button id="case-increase" class="btn btn-default">
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
-                  <h5>$59</h5>
+                  <h5 id="case-total">$59</h5>
                   <img src="images/remove.png" alt="" class="remove-item" />
                 </div>
               </div>
@@ -100,29 +100,29 @@
       </div>
     </section>
     <script>
-      //  phone plus button event handler
-      const phnPlusBtn = document.getElementById("plusPhoneBtn");
-      phnPlusBtn.addEventListener("click", function () {
-        console.log("clicked plus btn");
-      });
+      //case increase button event handler
+      document
+        .getElementById("case-increase")
+        .addEventListener("click", function () {
+          const caseInput = document.getElementById("case-count");
+          const caseCount = parseInt(caseInput.value);
+          const caseNewCount = caseCount + 1;
+          caseInput.value = caseNewCount;
+          const caseTotal = caseNewCount * 59;
+          document.getElementById("case-total").innerText = "$" + caseTotal;
+        });
 
-      // phone minus button event handler
-      const phnMinusBtn = document.getElementById("minusPhoneBtn");
-      phnMinusBtn.addEventListener("click", function () {
-        console.log("minus btn clicked");
-      });
-
-      // case plus button event handler
-      const casePlusBtn = document.getElementById("plusCaseBtn");
-      casePlusBtn.addEventListener("click", function () {
-        console.log("clicked case plus btn");
-      });
-
-      // case plus button event handler
-      const caseMinusBtn = document.getElementById("minusCaseBtn");
-      caseMinusBtn.addEventListener("click", function () {
-        console.log("clicked minus case btn");
-      });
+      //case decrease button event handler
+      document
+        .getElementById("case-decrease")
+        .addEventListener("click", function () {
+          const caseInput = document.getElementById("case-count");
+          const caseCount = parseInt(caseInput.value);
+          const caseNewCount = caseCount - 1;
+          caseInput.value = caseNewCount;
+          const caseTotal = caseNewCount * 59;
+          document.getElementById("case-total").innerText = "$" + caseTotal;
+        });
     </script>
   </body>
 </html>
