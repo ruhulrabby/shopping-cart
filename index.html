@@ -56,7 +56,10 @@
                 </div>
                 <div class="col-md-5 center-item">
                   <div class="input-group number-spinner">
-                    <button id="case-decrease" class="btn btn-default">
+                    <button
+                      onclick="handleProductChange(false);"
+                      class="btn btn-default"
+                    >
                       <i class="fas fa-minus"></i>
                     </button>
                     <input
@@ -65,7 +68,10 @@
                       class="form-control text-center"
                       value="1"
                     />
-                    <button id="case-increase" class="btn btn-default">
+                    <button
+                      onclick="handleProductChange(true);"
+                      class="btn btn-default"
+                    >
                       <i class="fas fa-plus"></i>
                     </button>
                   </div>
@@ -100,29 +106,42 @@
       </div>
     </section>
     <script>
-      //case increase button event handler
-      document
-        .getElementById("case-increase")
-        .addEventListener("click", function () {
-          const caseInput = document.getElementById("case-count");
-          const caseCount = parseInt(caseInput.value);
-          const caseNewCount = caseCount + 1;
-          caseInput.value = caseNewCount;
-          const caseTotal = caseNewCount * 59;
-          document.getElementById("case-total").innerText = "$" + caseTotal;
-        });
+      function handleProductChange(isIncrease) {
+        const caseInput = document.getElementById("case-count");
+        const caseCount = parseInt(caseInput.value);
+        let caseNewCount = caseCount;
+        if (isIncrease == true) {
+          caseNewCount = caseCount + 1;
+        }
+        if (isIncrease == false && caseCount > 0) {
+          caseNewCount = caseCount - 1;
+        }
+        caseInput.value = caseNewCount;
+        const caseTotal = caseNewCount * 59;
+        document.getElementById("case-total").innerText = "$" + caseTotal;
+      }
+
+      // document
+      //   .getElementById("case-increase")
+      //   .addEventListener("click", function () {
+      //     const caseInput = document.getElementById("case-count");
+      //     const caseCount = parseInt(caseInput.value);
+      //     const caseNewCount = caseCount + 1;
+      //     caseInput.value = caseNewCount;
+      //     const caseTotal = caseNewCount * 59;
+      //     document.getElementById("case-total").innerText = "$" + caseTotal;
+      //   });
 
       //case decrease button event handler
-      document
-        .getElementById("case-decrease")
-        .addEventListener("click", function () {
-          const caseInput = document.getElementById("case-count");
-          const caseCount = parseInt(caseInput.value);
-          const caseNewCount = caseCount - 1;
-          caseInput.value = caseNewCount;
-          const caseTotal = caseNewCount * 59;
-          document.getElementById("case-total").innerText = "$" + caseTotal;
-        });
+      //  document
+      //   .getElementById("case-decrease")
+      //   .addEventListener("click", function () {
+      //     const caseInput = document.getElementById("case-count");
+      //     const caseCount = parseInt(caseInput.value);
+      //     const caseNewCount = caseCount - 1;
+      //     caseInput.value = caseNewCount;
+      //     const caseTotal = caseNewCount * 59;
+      //     document.getElementById("case-total").innerText = "$" + caseTotal;
     </script>
   </body>
 </html>
